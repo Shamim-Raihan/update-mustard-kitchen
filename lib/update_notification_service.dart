@@ -58,7 +58,7 @@ class NewNotificationService {
       final AndroidFlutterLocalNotificationsPlugin? androidImplementation =
           notificationsPlugin.resolvePlatformSpecificImplementation<
               AndroidFlutterLocalNotificationsPlugin>();
-      granted = await androidImplementation?.requestPermission();
+      granted = await androidImplementation?.requestNotificationsPermission();
       log("Notification is granted: $granted");
     }
 

@@ -4,19 +4,16 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
-import 'package:mustard_kitchen/screens/home_page.dart';
 import 'package:mustard_kitchen/screens/splash_page.dart';
 import 'package:mustard_kitchen/update_notification_service.dart';
-
 import 'firebase_option.dart';
 import 'screens/notification_page.dart';
 import 'services/navigation_service.dart';
 
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  // If you're going to use other Firebase services in the background, such as Firestore,
-  // make sure you call `initializeApp` before using other Firebase services.
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   log("Handling a background message: ${message.messageId}");
@@ -27,10 +24,12 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  await Firebase.initializeApp();
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  NewNotificationService.requestNotiPermission();
-  NewNotificationService.initializeNotification();
+  // await Firebase.initializeApp();
+  // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  // NewNotificationService.requestNotiPermission();
+  // NewNotificationService.initializeNotification();
+  //Remove this method to stop OneSignal Debugging
+
   runApp(const MyApp());
 }
 
@@ -48,13 +47,13 @@ class _MyAppState extends State<MyApp> {
         log("FirebaseMessaging.instance.getInitialMessage");
         if (message != null) {
           log("New Notification");
-          Future.delayed(Duration(seconds: 4), () {
-                      Navigator.pushReplacement(
-              NavigationService.context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                      ShowNotification(notificationUrl: message.data['click_action'])));
-    });
+          Future.delayed(const Duration(seconds: 4), () {
+            Navigator.pushReplacement(
+                NavigationService.context,
+                MaterialPageRoute(
+                    builder: (context) => ShowNotification(
+                        notificationUrl: message.data['click_action'])));
+          });
           // Navigator.of(NavigationService.context).pop();
           // Navigator.pushReplacement(NavigationService.context, MaterialPageRoute(builder: (context)=>ShowNotification(notificationUrl: message.notification!.body.toString())));
           // Navigator.pushReplacement(
@@ -115,9 +114,9 @@ class _MyAppState extends State<MyApp> {
           //         )));
           log(message.data['body']);
           Navigator.of(NavigationService.context).push(MaterialPageRoute(
-            builder: (context) => ShowNotification(
-                  notificationUrl: message.data['click_action'],
-                )));
+              builder: (context) => ShowNotification(
+                    notificationUrl: message.data['click_action'],
+                  )));
         }
       },
     );
@@ -133,9 +132,11 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    registerNotification();
+    // registerNotification();
     super.initState();
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -147,8 +148,7 @@ class _MyAppState extends State<MyApp> {
         useMaterial3: true,
       ),
       navigatorKey: NavigationService.navigatorKey,
-      // home: const HomePage(),
-      home: SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }

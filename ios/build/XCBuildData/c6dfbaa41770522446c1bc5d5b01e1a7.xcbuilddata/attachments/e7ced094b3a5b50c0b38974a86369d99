@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>application-identifier</key>
+	<string>RK2LN7MPS8.com.indian.mustardKitchen</string>
+	<key>aps-environment</key>
+	<string>development</string>
+	<key>com.apple.developer.team-identifier</key>
+	<string>RK2LN7MPS8</string>
+	<key>com.apple.security.application-groups</key>
+	<array>
+		<string>group.com.indian.mustardKitchen.onesignal</string>
+	</array>
+	<key>get-task-allow</key>
+	<true/>
+</dict>
+</plist>

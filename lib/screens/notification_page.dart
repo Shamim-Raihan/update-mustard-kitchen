@@ -1,6 +1,4 @@
 import 'dart:developer';
-
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
@@ -10,8 +8,8 @@ import 'package:webview_flutter/webview_flutter.dart';
 import '../globals.dart' as globals;
 
 class ShowNotification extends StatefulWidget {
-  String notificationUrl;
-  ShowNotification({Key? key, required this.notificationUrl}) : super(key: key);
+  final String notificationUrl;
+  const ShowNotification({Key? key, required this.notificationUrl}) : super(key: key);
 
   @override
   State<ShowNotification> createState() => _ShowNotificationState();
@@ -53,7 +51,6 @@ class _ShowNotificationState extends State<ShowNotification> {
         ),
       )
       ..loadRequest(Uri.parse(globals.weblink));
-    Connectivity connectivity = Connectivity();
     return WillPopScope(
       onWillPop: () async {
         if (await controller.canGoBack()) {
@@ -65,7 +62,7 @@ class _ShowNotificationState extends State<ShowNotification> {
       },
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: Color(0xFF1a1a1a),
+          backgroundColor: const Color(0xFF1a1a1a),
           body: Obx(
             () => Stack(
               children: [

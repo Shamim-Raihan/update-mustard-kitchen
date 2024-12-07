@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:mustard_kitchen/screens/home_page.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -13,8 +12,8 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 1), () {
-      Get.offAll(HomePage());
+    Future.delayed(const Duration(seconds: 1), () {
+      Get.offAll(const HomePage());
     });
     super.initState();
   }
@@ -23,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xFF1a1a1a),
+        backgroundColor: const Color(0xFF1a1a1a),
         body: Center(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40),

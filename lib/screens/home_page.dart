@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
 
     OneSignal.initialize("3d8bd2fc-32d7-4aa6-a95d-39a74fa1992e");
 
-    OneSignal.Notifications.requestPermission(true);
+    await OneSignal.Notifications.requestPermission(true);
     String? onesignalId = await OneSignal.User.getOnesignalId();
     log('OneSignal id : $onesignalId');
 

@@ -1,4 +1,4 @@
-package com.indian.mustard_kitchen
+package com.indian.mustardkitchen
 
 import io.flutter.embedding.android.FlutterActivity
 
